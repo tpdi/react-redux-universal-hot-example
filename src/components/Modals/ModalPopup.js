@@ -9,7 +9,7 @@ export default class ModalPopup extends Component {
   }
 
 
-  render() {
+  render = () => {
     
     const {title, show, closer} = this.props;
     console.log("show " + show);
@@ -19,9 +19,9 @@ export default class ModalPopup extends Component {
     return (
       ! show ? <noscript></noscript> 
       :
-      <div id="modal" className="modal modal__bg modal--active">
+      <div id="modal" className="modal modal__bg" ref={(d) => this._modal = d}>
         <div className="modal__dialog">
-          <div className="modal__content modal__content--active">
+          <div className="modal__content" ref={(d) => this._content = d}>
             <div className="modal__header">
               <div className="modal__title">
                 <h2 className="modal__title-text">{title}</h2>

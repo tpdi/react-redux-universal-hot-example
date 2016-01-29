@@ -49,7 +49,7 @@ export default class Widgets extends Component {
       <div className={styles.widgets + ' container'}>
         <StaticModal/>
         <TextModal text="Hello Kiho, this is a modal with text as a property"/>
-        <BodyModal title="My Modal Title">
+        <BodyModal id="kihobodymodal" title="My Modal Title">
             <div className="modal__text">
               <p>
                 Hello Kiho, this is a modal with an in-line body and a title as a property

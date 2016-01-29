@@ -16,23 +16,25 @@ import * as widgetActions from 'redux/modules/widgets';
   fields: ['id', 'color', 'sprocketCount', 'owner'],
   validate: widgetValidation
 })
-export default class TextModal extends Component {
+export default class BodyModal extends Component {
 
   static propTypes = {
+    id: PropTypes.string.isRequired,
     title: PropTypes.string,
   }
   
   render() {
     
-    const { title } = this.props;
+    const { id, title } = this.props;
+    const hashId = "#" + id;
 
     return (
       <div className="content">  
-      <a href="" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal__trigger" data-modal="#bodymodal">
+      <a href="" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal__trigger" data-modal={hashId}>
         Launch Modal
       </a>
 
-      <div id="bodymodal" className="modal modal__bg">
+      <div id={id} className="modal modal__bg">
         <div className="modal__dialog">
           <div className="modal__content">
             <div className="modal__header">

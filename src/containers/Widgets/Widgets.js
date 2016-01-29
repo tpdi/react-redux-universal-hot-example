@@ -6,6 +6,7 @@ import {isLoaded, load as loadWidgets} from 'redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
 import connectData from 'helpers/connectData';
 import { WidgetForm } from 'components';
+import { StaticModal } from 'components';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -46,6 +47,7 @@ export default class Widgets extends Component {
     const styles = require('./Widgets.scss');
     return (
       <div className={styles.widgets + ' container'}>
+        <StaticModal/>
         <h1>
           Widgets
           <button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>

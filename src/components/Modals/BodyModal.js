@@ -21,17 +21,18 @@ export default class BodyModal extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
+    buttonText: PropTypes.string,
   }
   
   render() {
     
-    const { id, title } = this.props;
-    const hashId = "#" + id;
+    const { id, title, buttonText } = this.props;
+    const hashId = '#' + id;
 
     return (
       <div className="content">  
       <a href="" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal__trigger" data-modal={hashId}>
-        Launch Modal
+      {buttonText}
       </a>
 
       <div id={id} className="modal modal__bg">

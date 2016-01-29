@@ -7,6 +7,7 @@ import {initializeWithKey} from 'redux-form';
 import connectData from 'helpers/connectData';
 import { WidgetForm } from 'components';
 import { StaticModal, TextModal, BodyModal } from 'components';
+import widgetValidation, {colors} from '../../components/WidgetForm/widgetValidation'
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -49,7 +50,7 @@ export default class Widgets extends Component {
       <div className={styles.widgets + ' container'}>
         <StaticModal/>
         <TextModal text="Hello Kiho, this is a modal with text as a property"/>
-        <BodyModal id="kihobodymodal" title="My Modal Title">
+        <BodyModal id="kihobodymodal" title="My Modal Title" buttonText="Show Modal">
             <div className="modal__text">
               <p>
                 Hello Kiho, this is a modal with an in-line body and a title as a property
@@ -87,6 +88,7 @@ export default class Widgets extends Component {
             <th className={styles.sprocketsCol}>Sprockets</th>
             <th className={styles.ownerCol}>Owner</th>
             <th className={styles.buttonCol}></th>
+            <th className={styles.buttonCol}></th>
           </tr>
           </thead>
           <tbody>
@@ -102,6 +104,18 @@ export default class Widgets extends Component {
                   <button className="btn btn-primary" onClick={handleEdit(widget)}>
                     <i className="fa fa-pencil"/> Edit
                   </button>
+                </td>
+                <td className={styles.buttonCol}>
+                  <BodyModal id={'w' + widget.id} title={'Widget Id ' + widget.id} buttonText="Show Modal">
+                    <div className="modal__text">
+                      <p>
+                        Hello Kiho, this is a modal for editting this row
+                      </p>
+                      <label>Count:
+                        <input defaultValue={widget.sprocketCount}/>
+                      </label>
+                    </div>
+                  </BodyModal>
                 </td>
               </tr>)
           }

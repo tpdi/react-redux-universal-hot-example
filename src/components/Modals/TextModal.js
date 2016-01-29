@@ -5,12 +5,13 @@ import React, {Component, PropTypes} from 'react';
 export default class TextModal extends Component {
 
   static propTypes = {
+    title: PropTypes.string,
     text: PropTypes.string,
   }
   
   render() {
     
-    const { text } = this.props;
+    const { title, text } = this.props;
 
     return (
       <div className="content">  
@@ -23,7 +24,7 @@ export default class TextModal extends Component {
           <div className="modal__content">
             <div className="modal__header">
               <div className="modal__title">
-                <h2 className="modal__title-text">Modal</h2>
+                <h2 className="modal__title-text">{title}</h2>
               </div>
 
               <span className="mdl-button mdl-button--icon mdl-js-button  material-icons  modal__close"></span>

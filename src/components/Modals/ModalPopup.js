@@ -19,7 +19,7 @@ export default class ModalPopup extends Component {
     return (
       ! show ? <noscript></noscript> 
       :
-      <div id="modal" className="modal modal__bg" ref={(d) => this._modal = d}>
+      <div id="modal" className="modal modal__bg" onClick={closer} ref={(d) => this._modal = d}>
         <div className="modal__dialog">
           <div className="modal__content" ref={(d) => this._content = d}>
             <div className="modal__header">

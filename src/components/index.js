@@ -14,4 +14,6 @@ export WidgetForm from './WidgetForm/WidgetForm';
 export StaticModal from './Modals/StaticModal';
 export TextModal from './Modals/TextModal';
 export BodyModal from './Modals/BodyModal';
+export WidgetModal from './WidgetForm/WidgetModal';
+
 

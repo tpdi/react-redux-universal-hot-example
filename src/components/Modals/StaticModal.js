@@ -1,21 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {reduxForm} from 'redux-form';
-import widgetValidation, {colors} from '../WidgetForm/widgetValidation';
-import * as widgetActions from 'redux/modules/widgets';
 
-@connect(
-  state => ({
-    saveError: state.widgets.saveError
-  }),
-  dispatch => bindActionCreators(widgetActions, dispatch)
-)
-@reduxForm({
-  form: 'widget',
-  fields: ['id', 'color', 'sprocketCount', 'owner'],
-  validate: widgetValidation
-})
 export default class StaticModal extends Component {
 
 

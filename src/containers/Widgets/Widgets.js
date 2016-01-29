@@ -6,8 +6,8 @@ import {isLoaded, load as loadWidgets} from 'redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
 import connectData from 'helpers/connectData';
 import { WidgetForm } from 'components';
-import { StaticModal, TextModal, BodyModal } from 'components';
-import widgetValidation, {colors} from '../../components/WidgetForm/widgetValidation'
+import { StaticModal, TextModal, BodyModal, WidgetModal } from 'components';
+
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -107,14 +107,9 @@ export default class Widgets extends Component {
                 </td>
                 <td className={styles.buttonCol}>
                   <BodyModal id={'w' + widget.id} title={'Widget Id ' + widget.id} buttonText="Show Modal">
-                    <div className="modal__text">
-                      <p>
-                        Hello Kiho, this is a modal for editting this row
-                      </p>
-                      <label>Count:
-                        <input defaultValue={widget.sprocketCount}/>
-                      </label>
-                    </div>
+                                      <button className="btn btn-primary" onClick={handleEdit(widget)}>
+                    <i className="fa fa-pencil"/> Edit
+                  </button>
                   </BodyModal>
                 </td>
               </tr>)

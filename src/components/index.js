@@ -14,6 +14,9 @@ export WidgetForm from './WidgetForm/WidgetForm';
 export StaticModal from './Modals/StaticModal';
 export TextModal from './Modals/TextModal';
 export BodyModal from './Modals/BodyModal';
+export Modal from './Modals/Modal.js';
+export ModalPopup from './Modals/ModalPopup.js';
+export ModalTrigger from './Modals/ModalTrigger.js';
 export WidgetModal from './WidgetForm/WidgetModal';
 
 

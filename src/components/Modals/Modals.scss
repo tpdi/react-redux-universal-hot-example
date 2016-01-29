@@ -1,0 +1,15 @@
+.modal_close {
+  z-index: 1100;
+  cursor: pointer;
+}
+.modal__header .modal_close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+.modal__header .modal_close:before {
+  content: 'close';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}

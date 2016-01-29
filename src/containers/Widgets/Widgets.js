@@ -6,7 +6,7 @@ import {isLoaded, load as loadWidgets} from 'redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
 import connectData from 'helpers/connectData';
 import { WidgetForm } from 'components';
-import { StaticModal, TextModal, BodyModal, WidgetModal } from 'components';
+import { StaticModal, TextModal, BodyModal, WidgetModal, Modal } from 'components';
 
 
 function fetchDataDeferred(getState, dispatch) {
@@ -49,14 +49,21 @@ export default class Widgets extends Component {
     return (
       <div className={styles.widgets + ' container'}>
         <StaticModal/>
-        <TextModal text="Hello Kiho, this is a modal with text as a property"/>
+        <TextModal title='I am a TextModal' text="Hello Kiho, this is a modal with title and text as properties"/>
         <BodyModal id="kihobodymodal" title="My Modal Title" buttonText="Show Modal">
             <div className="modal__text">
               <p>
                 Hello Kiho, this is a modal with an in-line body and a title as a property
               </p>
             </div>
+      
         </BodyModal>
+        <Modal label="Show Pure React Modal" title="Hello Kiho, I am Pure React">
+          <div className='modal__text'>
+            <p>Hello I am Pure React modal for Kiho. Please close me.</p>
+          </div>
+        </Modal>
+        
         <h1>
           Widgets
           <button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>

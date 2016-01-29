@@ -17,6 +17,12 @@ import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';
 
 const client = new ApiClient();
 
+require('material-design-lite/material.min.css');
+require('material-design-lite/material.min.js');
+require('material-modal/dist/css/material-modal.min.css');
+require('material-modal/dist/js/material-modal.min.js');
+
+
 // Three different types of scroll behavior available.
 // Documented here: https://github.com/rackt/scroll-behavior
 const scrollableHistory = useScroll(createHistory);

@@ -1,27 +1,31 @@
 import React, {Component, PropTypes} from 'react';
 
 export default class ModalPopup extends Component {
-  
-    static propTypes = {
-    title: PropTypes.string,
-    show: PropTypes.bool,
-    closer: PropTypes.func
+
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    show: PropTypes.bool.isRequired,
+    closer: PropTypes.func.isRequired,
+    closeLabel: PropTypes.string,
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ])
   }
 
+  static defaultProps = {
+    closeLabel: 'Close'
+  }
 
   render = () => {
-    
-    const {title, show, closer} = this.props;
-    console.log("show " + show);
-    
-    const styles = require('./Modals.scss');
+    const {title, show, closer, closeLabel} = this.props;
 
     return (
-      ! show ? <noscript></noscript> 
+      ! show ? <noscript></noscript>
       :
-      <div id="modal" className="modal modal_bg" onClick={closer} ref={(d) => this._modal = d}>
+      <div id="modal" className="modal modal_bg" onClick={closer} ref={(modal) => this._modal = modal}>
         <div className="modal_dialog">
-          <div className="modal_content" ref={(d) => this._content = d}>
+          <div className="modal_content" ref={(content) => this._content = content}>
             <div className="modal_header">
               <div className="modal_title">
                 <h2 className="modal_title-text">{title}</h2>
@@ -35,7 +39,7 @@ export default class ModalPopup extends Component {
 
             <div className="modal_footer">
               <a className="mdl-button mdl-button--colored mdl-js-button modal_close" onClick={closer}>
-                Close
+                {closeLabel}
               </a>
             </div>
           </div>

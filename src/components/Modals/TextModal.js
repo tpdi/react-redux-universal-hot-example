@@ -16,7 +16,7 @@ export default class TextModal extends Component {
     return (
       <div className="content">  
       <a href="" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal__trigger" data-modal="#textmodal">
-        Launch Modal
+        Launch Material-Modal Modal
       </a>
 
       <div id="textmodal" className="modal modal__bg">

@@ -8,7 +8,7 @@ export default class StaticModal extends Component {
     return (
       <div className="content">  
       <a href="" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal__trigger" data-modal="#modal">
-        Launch Modal
+        Launch Material-Modal Modal
       </a>
 
       <div id="modal" className="modal modal__bg">

@@ -50,15 +50,17 @@ export default class Widgets extends Component {
     return (
       <div className={styles.widgets + ' container'}>
         <StaticModal/>
+        <hr/>
         <TextModal title="I am a TextModal" text="Hello Kiho, this is a modal with title and text as properties"/>
-        <BodyModal id="kihobodymodal" title="My Modal Title" buttonText="Show Modal">
+        <hr/>
+        <BodyModal id="kihobodymodal" title="My Modal Title" buttonText="Show Material-Modal Modal">
             <div className="modal__text">
               <p>
                 Hello Kiho, this is a modal with an in-line body and a title as a property
               </p>
             </div>
-
         </BodyModal>
+        <hr/>
         <Modal label="Show Pure React Modal" title="Hello Kiho, I am Pure React" closeLabel="Cancel">
           <div className="modal_text">
             <p>Hello I am Pure React modal for Kiho. Please close me.</p>

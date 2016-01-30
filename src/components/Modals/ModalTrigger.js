@@ -52,13 +52,12 @@ export default class ModalTrigger extends Component {
     
     return  (triggered ? 
       
-      <a href="" ref={(t) => this._trigger = t} className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+      <a href="" ref={(t) => this._trigger = t} onClick={opener} className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal_trigger">
         {label}
-        <div className='modal__temp' ref={(t) => this._temp = t}>
-        </div>
+        {triggered && <div ref={(t) => this._temp = t}></div>}
       </a>
       :
-      <a href="" ref={(t) => this._trigger = t} onClick={opener} className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+      <a href="" ref={(t) => this._trigger = t} onClick={opener} className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored modal_trigger">
         {label}
       </a>
     );

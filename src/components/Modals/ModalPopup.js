@@ -19,12 +19,12 @@ export default class ModalPopup extends Component {
     return (
       ! show ? <noscript></noscript> 
       :
-      <div id="modal" className="modal modal__bg" onClick={closer} ref={(d) => this._modal = d}>
-        <div className="modal__dialog">
-          <div className="modal__content" ref={(d) => this._content = d}>
-            <div className="modal__header">
-              <div className="modal__title">
-                <h2 className="modal__title-text">{title}</h2>
+      <div id="modal" className="modal modal_bg" onClick={closer} ref={(d) => this._modal = d}>
+        <div className="modal_dialog">
+          <div className="modal_content" ref={(d) => this._content = d}>
+            <div className="modal_header">
+              <div className="modal_title">
+                <h2 className="modal_title-text">{title}</h2>
               </div>
 
               <span className="mdl-button mdl-button--icon mdl-js-button  material-icons modal_close" onClick={closer}></span>
@@ -33,7 +33,7 @@ export default class ModalPopup extends Component {
 
             {this.props.children}
 
-            <div className="modal__footer">
+            <div className="modal_footer">
               <a className="mdl-button mdl-button--colored mdl-js-button modal_close" onClick={closer}>
                 Close
               </a>

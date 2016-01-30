@@ -6,36 +6,28 @@ export default class Modal extends Component {
   static propTypes = {
     label: PropTypes.string,
     title: PropTypes.string,
-
   }
 
   constructor(props) {
     super(props);
     this.state = {triggered: false};
-    // this.close = this.close.bind(this);
   }
 
   close = (event) => {
     event.preventDefault();
-    // event.stopImmediatePropagation();
-    // console.log('closing');
-    // console.log('trigger', this._trigger);
-    // console.log('popup', this._popup);
     this.setState({triggered: false});
   }
 
   open = (event) => {
     event.preventDefault();
-    // event.stopImmediatePropagation();
-    // console.log('opening');
-    // console.log('trigger', this._trigger);
-    // console.log('popup', this._popup);
     this.setState({triggered: true});
   }
   
 
   
   moveTrigger = (trig, div, modal, content) => {
+    div.classList.add('modal_temp');
+    div.style.backgroundColor = window.getComputedStyle(trig).backgroundColor;
     var trigProps = trig.getBoundingClientRect();
     var m = modal;
     var mProps = content.getBoundingClientRect();
@@ -44,7 +36,7 @@ export default class Modal extends Component {
     var yc = window.innerHeight / 2;
 
     // this class increases z-index value so the button goes overtop the other buttons
-    trig.classList.add('modal__trigger--active');
+    trig.classList.add('modal_trigger--active');
 
     // these values are used for scale the temporary div to the same size as the modal
     scaleX = mProps.width / trigProps.width;
@@ -75,31 +67,34 @@ export default class Modal extends Component {
 
     var animateOpen = (div, m, content) => {
 
-    function hideDiv() {
-      // fadeout div so that it can't be seen when the window is resized
-      div.style.opacity = '0';
-      content.removeEventListener('transitionend', hideDiv, false);
-    }
+      function hideDiv() {
+        // fadeout div so that it can't be seen when the window is resized
+        div.style.opacity = '0';
+        content.removeEventListener('transitionend', hideDiv, false);
+      }
 
-    // if (!isOpen) {
-      // select the content inside the modal
-      // var content = m.querySelector('.modal__content');
-      // reveal the modal
       m.classList.add('modal--active');
       // reveal the modal content
-      content.classList.add('modal__content--active');
+      content.classList.add('modal_content--active');
 
       content.addEventListener('transitionend', hideDiv, false);
 
-      // isOpen = true;
-    //}
-  }
+
+    };
 
     window.setTimeout(function() {
       window.requestAnimationFrame(function() {
         animateOpen(div, m, content);
       });
     }, 400);
+
+  }
+  
+  animateClose = (trigger, div, modal, content) => {
+      /* Remove active classes from triggers */
+        trigger.style.transform = 'none';
+        trigger.style.webkitTransform = 'none';
+        trigger.classList.remove('modal_trigger--active');
 
   }
   
@@ -111,6 +106,8 @@ export default class Modal extends Component {
     console.log('popup', this._popup);
     if (prevState.triggered === false && this.state.triggered === true) {
       this.moveTrigger(this._trigger._trigger, this._trigger._temp, this._popup._modal, this._popup._content);
+    } else if (prevState.triggered === true && this.state.triggered === false) {
+      this.animateClose(this._trigger._trigger, this._trigger._temp, this._popup._modal, this._popup._content);
     }
   }
 

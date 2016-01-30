@@ -46,6 +46,7 @@ export default class Widgets extends Component {
       refreshClassName += ' fa-spin';
     }
     const styles = require('./Widgets.scss');
+    const modalStyle= require('../../components/Modals/Modals.scss');
     return (
       <div className={styles.widgets + ' container'}>
         <StaticModal/>

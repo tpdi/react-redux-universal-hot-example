@@ -17,6 +17,8 @@ export BodyModal from './Modals/BodyModal';
 export Modal from './Modals/Modal.js';
 export ModalPopup from './Modals/ModalPopup.js';
 export ModalTrigger from './Modals/ModalTrigger.js';
+export ModalCloseButton from './Modals/ModalCloseButton.js';
 export WidgetModal from './WidgetForm/WidgetModal';
+export ModalWithCloseButtonFooter from './Modals/ModalWithCloseButtonFooter.js';
 
 

@@ -6,7 +6,7 @@ import {isLoaded, load as loadWidgets} from 'redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
 import connectData from 'helpers/connectData';
 import { WidgetForm } from 'components';
-import { StaticModal, TextModal, BodyModal, WidgetModal, Modal } from 'components';
+import { StaticModal, TextModal, BodyModal, WidgetModal, Modal, ModalCloseButton, ModalWithCloseButtonFooter } from 'components';
 
 
 function fetchDataDeferred(getState, dispatch) {
@@ -61,11 +61,49 @@ export default class Widgets extends Component {
             </div>
         </BodyModal>
         <hr/>
-        <Modal label="Show Pure React Modal" title="Hello Kiho, I am Pure React" closeLabel="Cancel">
+
+        <Modal triggerLabel="Show Pure React Modal" title="Hello Kiho, I am Pure React" width="600px">
+          <div className="modal_text">
+            <p>Hello I am Pure React modal for Kiho. Please close me.</p>
+            <input defaultValue="3"/>
+            <select>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+            </select>
+
+              <ModalWithCloseButtonFooter triggerLabel="Show Nested Modal" title="Hello Kiho, I am Nested Modal"
+                zIndex="2000">
+                <div className="modal_text">
+                  <p>Hello I am a nested Pure React modal for Kiho. Please close me.</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis laboriosam accusantium facere suscipit, alias accusamus corrupti consequatur at porro, voluptates commodi sed omnis voluptatem, ex officiis illum, architecto fugiat id?
+                  </p>
+                </div>
+              </ModalWithCloseButtonFooter>
+          </div>
+          <div className="modal_footer">
+            <ModalCloseButton label="Submit" style={{'fontWeight': '800 !important'}}
+              onClose={(event) => {alert('You can\'t submit!'); event.preventDefault();}}/>
+            <ModalCloseButton label="Cancel" onClose={() => {alert('cancelling')}}/>
+            <ModalCloseButton/>
+          </div>
+        </Modal>
+        <hr/>
+
+        <ModalWithCloseButtonFooter triggerLabel="Show Simple Modal"
+          title="Hello Kiho, I am Pure React" closeButtonLabel="Really Cancel">
+          <div className="modal_text">
+            <p>Hello I am Pure React modal for Kiho. Please cancel me.</p>
+          </div>
+        </ModalWithCloseButtonFooter>
+        <hr/>
+
+        <ModalWithCloseButtonFooter triggerLabel="Show Simple Modal" title="Hello Kiho, I am Pure React">
           <div className="modal_text">
             <p>Hello I am Pure React modal for Kiho. Please close me.</p>
           </div>
-        </Modal>
+        </ModalWithCloseButtonFooter>
+        <hr/>
 
         <h1>
           Widgets

@@ -4,13 +4,17 @@ import {ModalTrigger, ModalPopup } from 'components';
 export default class Modal extends Component {
 
   static propTypes = {
-    label: PropTypes.string.isRequired,
+    triggerLabel: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    closeLabel: PropTypes.string,
+    zIndex: PropTypes.number,
     children: React.PropTypes.oneOfType([
       React.PropTypes.arrayOf(React.PropTypes.node),
       React.PropTypes.node
     ])
+  }
+
+  static defaultProps = {
+    zIndex: 1000
   }
 
   constructor(props) {
@@ -19,11 +23,6 @@ export default class Modal extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log('Modal componnetDidUpdate');
-    console.log('prevProps', prevProps, this.props);
-    console.log('prevState', prevState, this.state);
-    console.log('trigger', this._trigger);
-    console.log('popup', this._popup);
     if (prevState.triggered === false && this.state.triggered === true) {
       this.moveTrigger(this._trigger._trigger, this._trigger._temp, this._popup._modal, this._popup._content);
     } else if (prevState.triggered === true && this.state.triggered === false) {
@@ -31,22 +30,13 @@ export default class Modal extends Component {
     }
   }
 
-  render = () => {
-    const {label, title, closeLabel} = this.props;
-
-    return (
-      <div>
-        <ModalTrigger label={label} triggered={this.state.triggered} opener={this.open} ref={(trigger) => this._trigger = trigger}/>
-        <ModalPopup title={title} show={this.state.triggered} closer={this.close} closeLabel={closeLabel} ref={(popup) => this._popup = popup}>
-          {this.props.children}
-        </ModalPopup>
-      </div>
-    );
-  }
-
   close = (event) => {
-    event.preventDefault();
-    this.setState({triggered: false});
+    console.log('close');
+    if (! event.isDefaultPrevented()
+       && (event.target.classList.contains('modal_bg') || event.target.classList.contains('modal_close'))) {
+      event.preventDefault();
+      this.setState({triggered: false});
+    }
   }
 
   open = (event) => {
@@ -119,4 +109,31 @@ export default class Modal extends Component {
     trigger.style.webkitTransform = 'none';
     trigger.classList.remove('modal_trigger--active');
   }
+
+  render = () => {
+    const {triggerLabel, title, zIndex, ...other} = this.props;
+
+    return (
+      <div>
+        <ModalTrigger
+           triggerLabel={triggerLabel}
+           triggered={this.state.triggered}
+           opener={this.open}
+           ref={(trigger) => this._trigger = trigger}/>
+
+        <ModalPopup
+           {...other}
+           title={title}
+           show={this.state.triggered}
+           closer={this.close}
+           zIndex={zIndex}
+           ref={(popup) => this._popup = popup}>
+
+          {this.props.children}
+
+        </ModalPopup>
+      </div>
+    );
+  }
 }
+
